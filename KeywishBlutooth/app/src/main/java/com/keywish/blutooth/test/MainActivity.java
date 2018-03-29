@@ -34,7 +34,7 @@ import com.keywish.blutooth.utils.Utils;
 import com.keywish.blutooth.test.R;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
     ListView listView;
     SwipeRefreshLayout swagLayout;
     BluetoothAdapter mBluetoothAdapter;
@@ -50,11 +50,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // set no title
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        // set full screnn
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+      //  requestWindowFeature(Window.FEATURE_NO_TITLE);
+       // set full screnn
+      //  getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         // set keep screen on
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+     //   getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.activity_main);
         getActionBar().setTitle(R.string.app_title);
         sharedPreferences = getPreferences(0);

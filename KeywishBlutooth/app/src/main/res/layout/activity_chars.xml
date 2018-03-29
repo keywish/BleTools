@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.xinzhongxin.bletester.MainActivity" >
+    tools:context="com.keywish.blutooth.test.MainActivity" >
 
     <ListView
         android:id="@+id/lv_charList"
