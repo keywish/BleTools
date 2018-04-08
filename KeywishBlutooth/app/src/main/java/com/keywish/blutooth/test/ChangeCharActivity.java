@@ -22,6 +22,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.IBinder;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -40,7 +41,7 @@ import android.widget.Toast;
 import com.keywish.blutooth.service.BleService;
 import com.keywish.blutooth.test.R;
 
-public class ChangeCharActivity extends Activity implements OnClickListener {
+public class ChangeCharActivity extends AppCompatActivity implements OnClickListener {
     TextView descriptor1;
     TextView descriptor2;
     TextView charHex;
@@ -212,7 +213,7 @@ public class ChangeCharActivity extends Activity implements OnClickListener {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_char);
-        getActionBar().setTitle("特征操作");
+        getSupportActionBar().setTitle("特征操作");
         sharedPreferences = this
                 .getSharedPreferences("writedata", MODE_PRIVATE);
         editor = sharedPreferences.edit();

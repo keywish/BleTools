@@ -18,6 +18,7 @@ import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,11 +35,12 @@ import com.keywish.blutooth.utils.Utils;
 import com.keywish.blutooth.test.R;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
     ListView listView;
     SwipeRefreshLayout swagLayout;
     BluetoothAdapter mBluetoothAdapter;
     private LeScanCallback mLeScanCallback;
+    private static final String TAG = "BleTools_MainActivity";
     BleDeviceListAdapter mBleDeviceListAdapter;
     boolean isExit;
     Handler handler;
@@ -49,14 +51,16 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate: ");
         // set no title
-      //  requestWindowFeature(Window.FEATURE_NO_TITLE);
-       // set full screnn
-      //  getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        // requestWindowFeature(Window.FEATURE_NO_TITLE);
+        // set full screnn
+        // getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         // set keep screen on
-     //   getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        // getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        getSupportActionBar().setTitle(R.string.app_title);
         setContentView(R.layout.activity_main);
-        getActionBar().setTitle(R.string.app_title);
+
         sharedPreferences = getPreferences(0);
         editor = sharedPreferences.edit();
         init();
@@ -187,9 +191,13 @@ public class MainActivity extends Activity {
             case R.id.menu_about:
                 MainActivity.this.startActivity(new Intent(this,
                         AboutActivity.class));
+                break;
             case R.id.menu_qrcode:
                 MainActivity.this.startActivity(new Intent(this,
                         QrcodeActivity.class));
+                break;
+            default:
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

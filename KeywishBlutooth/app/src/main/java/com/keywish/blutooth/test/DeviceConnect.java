@@ -22,7 +22,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
-
+import android.support.v7.app.AppCompatActivity;
 
 import com.keywish.blutooth.adapter.BleSevicesListAdapter;
 import com.keywish.blutooth.service.BleService;
@@ -33,7 +33,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class DeviceConnect extends Activity {
+public class DeviceConnect extends AppCompatActivity {
 
     public static final String EXTRAS_DEVICE_NAME = "DEVICE_NAME";
     public static final String EXTRAS_DEVICE_ADDRESS = "DEVICE_ADDRESS";
@@ -134,7 +134,7 @@ public class DeviceConnect extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getActionBar().setTitle("服务列表");
+        getSupportActionBar().setTitle("服务列表");
         sharedPreferences = getPreferences(0);
         editor = sharedPreferences.edit();
         init();

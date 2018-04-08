@@ -18,6 +18,7 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -30,7 +31,7 @@ import com.keywish.blutooth.service.BleService;
 import com.keywish.blutooth.utils.Utils;
 import com.keywish.blutooth.test.R;
 
-public class CharacterisiticActivity extends Activity {
+public class CharacterisiticActivity extends AppCompatActivity {
     ListView lv;
     BluetoothAdapter mBluetoothAdapter;
     CharacterisiticListAdapter charListAdapter;
@@ -108,7 +109,7 @@ public class CharacterisiticActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chars);
-        getActionBar().setTitle("特性列表");
+        getSupportActionBar().setTitle("特性列表");
         uuid = (UUID) getIntent().getExtras().get("serviceUUID");
         init();
         bindService(new Intent(this, BleService.class), conn, BIND_AUTO_CREATE);
