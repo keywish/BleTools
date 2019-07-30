@@ -7,7 +7,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="描述列表:"
+        android:text="@string/description_list"
         android:textSize="20dp" />
 
     <TextView
@@ -23,7 +23,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="特征值:"
+        android:text="@string/characteristic_value"
         android:textSize="20dp" />
 
     <TextView
@@ -55,7 +55,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="读取"
+            android:text="@string/read"
             android:visibility="gone" />
 
         <Button
@@ -63,7 +63,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="写入"
+            android:text="@string/write"
             android:visibility="gone" />
 
         <Button
@@ -71,7 +71,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="开始通知"
+            android:text="@string/start_notice"
             android:visibility="gone" />
     </LinearLayout>
 
@@ -90,7 +90,7 @@
             android:editable="false"
             android:focusable="false"
             android:gravity="top"
-            android:hint="(此处显示通知的值)" />
+            android:hint="@string/et_notify_resualt" />
     </ScrollView>
 
     <LinearLayout
@@ -102,7 +102,7 @@
             android:id="@+id/result_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="字节数:0"
+            android:text="@string/result_count"
             android:textSize="15dp"
             android:visibility="invisible" />
 
@@ -110,7 +110,7 @@
             android:id="@+id/clear_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="清空"
+            android:text="@string/clear_result"
             android:textSize="15dp"
             android:visibility="invisible" />
 
@@ -118,7 +118,7 @@
             android:id="@+id/save_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="保存"
+            android:text="@string/save"
             android:textSize="15dp"
             android:visibility="invisible" />
     </LinearLayout>
@@ -135,13 +135,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="字符串" />
+            android:text="@string/character_string" />
 
         <RadioButton
             android:id="@+id/rb_hex"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="十六进制" />
+            android:text="@string/hexadecimal" />
     </RadioGroup>
 
 </LinearLayout>

@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="如果有疑问，或者有好的建议，请联系:" />
+        android:text="@string/about_question" />
 
     <TextView
         android:id="@+id/tv_email"
@@ -27,7 +27,8 @@
         android:layout_below="@+id/tv_email"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:text="代码已在github上开源，欢迎fork和star和pull request" />
+        android:text="@string/abount_hint"
+        ></TextView>
 
     <TextView
         android:id="@+id/tv_github"
@@ -46,6 +47,6 @@
         android:layout_below="@+id/tv_github"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:text="通知的结果保存在SD根目录下txt" />
+        android:text="@string/help_hint" />
 
 </RelativeLayout>

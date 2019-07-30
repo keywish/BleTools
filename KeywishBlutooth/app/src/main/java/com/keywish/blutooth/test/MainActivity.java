@@ -3,18 +3,27 @@ package com.keywish.blutooth.test;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothAdapter.LeScanCallback;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.pm.PackageManager;
+import android.net.wifi.ScanResult;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.support.v7.app.AppCompatActivity;
@@ -47,7 +56,11 @@ public class MainActivity extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
     Editor editor;
-  //  @SuppressLint("NewApi")
+
+    private static String[] PERMISSIONS_STORAGE = {
+            "android.permission.ACCESS_COARSE_LOCATION"};
+
+    //  @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,20 +76,92 @@ public class MainActivity extends AppCompatActivity {
 
         sharedPreferences = getPreferences(0);
         editor = sharedPreferences.edit();
+
         init();
         getBleAdapter();
         getScanResualt();
-        new Thread(new Runnable() {
-            @SuppressWarnings("deprecation")
-            @Override
-            public void run() {
-                // TODO Auto-generated method stub
-                mBluetoothAdapter.startLeScan(mLeScanCallback);
+        BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
+        int state = adapter.getState();
+        if (state == BluetoothAdapter.STATE_OFF) {
+            adapter.enable();
+        } else if (state == BluetoothAdapter.STATE_ON) {
+            checkPermission();
+        }
+        IntentFilter statusFilter = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
+        registerReceiver(mStatusReceive, statusFilter);
+
+    }
+
+    private BroadcastReceiver mStatusReceive = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            switch(intent.getAction()){
+                case BluetoothAdapter.ACTION_STATE_CHANGED:
+                    int blueState = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, 0);
+                    switch(blueState){
+                        case BluetoothAdapter.STATE_TURNING_ON:
+                            break;
+                        case BluetoothAdapter.STATE_ON:
+                            //开始扫描
+                            checkPermission();
+                            break;
+                        case BluetoothAdapter.STATE_TURNING_OFF:
+                            break;
+                        case BluetoothAdapter.STATE_OFF:
+                            break;
+                    }
+                    break;
             }
-        }).start();
+        }
+    };
+    private void checkPermission() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            //判断是否有权限
+            if (ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                //请求权限
+                ActivityCompat.requestPermissions(this, PERMISSIONS_STORAGE,
+                        1);
+            } else {
+                new Thread(new Runnable() {
+                    @SuppressWarnings("deprecation")
+                    @Override
+                    public void run() {
+                        // TODO Auto-generated method stub
+                        mBluetoothAdapter.startLeScan(mLeScanCallback);
+                    }
+                }).start();
+            }
+        }
+    }
+
+    //权限申请回调
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case 1:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_DENIED) {
+                    checkPermission();
+                    return;
+                } else {
+                    new Thread(new Runnable() {
+                        @SuppressWarnings("deprecation")
+                        @Override
+                        public void run() {
+                            // TODO Auto-generated method stub
+                            mBluetoothAdapter.startLeScan(mLeScanCallback);
+                        }
+                    }).start();
+                }
+                break;
+        }
     }
 
     private void init() {
+
+        //adapter.disable();
         // TODO Auto-generated method stub
         listView = (ListView) findViewById(R.id.lv_deviceList);
         listView.setEmptyView(findViewById(R.id.pb_empty));
@@ -84,18 +169,19 @@ public class MainActivity extends AppCompatActivity {
         swagLayout.setVisibility(View.VISIBLE);
         swagLayout.setOnRefreshListener(new OnRefreshListener() {
 
-        @SuppressWarnings("deprecation")
-        @SuppressLint("NewApi")
-        @Override
-        public void onRefresh() {
-            // TODO Auto-generated method stub
-            mBleDeviceListAdapter.clear();
-            mBluetoothAdapter.startLeScan(mLeScanCallback);
-            swagLayout.setRefreshing(false);
-        }
+            @SuppressWarnings("deprecation")
+            @SuppressLint("NewApi")
+            @Override
+            public void onRefresh() {
+                // TODO Auto-generated method stub
+                mBleDeviceListAdapter.clear();
+                mBluetoothAdapter.startLeScan(mLeScanCallback);
+                swagLayout.setRefreshing(false);
+            }
         });
         mBleDeviceListAdapter = new BleDeviceListAdapter(this);
         listView.setAdapter(mBleDeviceListAdapter);
+
         setListItemListener();
     }
 
@@ -165,7 +251,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
-        menu.getItem(0).setTitle("共" + mBleDeviceListAdapter.getCount() + "个");
+        menu.getItem(0).setTitle(getResources().getString(R.string.count) + mBleDeviceListAdapter.getCount() + getResources().getString(R.string.individual));
         return true;
     }
 
@@ -181,11 +267,11 @@ public class MainActivity extends AppCompatActivity {
                 if (sharedPreferences.getBoolean("AutoConnect", true)) {
                     editor.putBoolean("AutoConnect", false);
                     editor.commit();
-                    Toast.makeText(this, "取消自动连接", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getText(R.string.cancel_automatic_connection), Toast.LENGTH_SHORT).show();
                 } else {
                     editor.putBoolean("AutoConnect", true);
                     editor.commit();
-                    Toast.makeText(this, "已设置为断开后自动连接", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getText(R.string.set_connect_disconnection), Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.menu_about:
@@ -212,7 +298,7 @@ public class MainActivity extends AppCompatActivity {
     private void exitBy2Click() {
         if (!isExit) {
             isExit = true;
-            Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getText(R.string.isExit_hint), Toast.LENGTH_SHORT).show();
             new Timer().schedule(new TimerTask() {
                 public void run() {
                     isExit = false;

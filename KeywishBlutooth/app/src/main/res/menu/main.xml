@@ -6,26 +6,31 @@
         android:id="@+id/menu_scan"
         android:orderInCategory="100"
         android:showAsAction="ifRoom|withText"
-        android:title="@string/menu_scan"/>
+        android:title="@string/menu_scan"
+        tools:ignore="AppCompatResource" />
     <item
         android:id="@+id/menu_stop"
         android:orderInCategory="101"
         android:showAsAction="ifRoom|withText"
-        android:title="@string/menu_stop"/>
+        android:title="@string/menu_stop"
+        tools:ignore="AppCompatResource" />
     <item
         android:id="@+id/menu_autoconnect"
         android:orderInCategory="102"
         android:showAsAction="never"
-        android:title="@string/menu_autoconnect"/>
+        android:title="@string/menu_autoconnect"
+        tools:ignore="AppCompatResource" />
     <item
         android:id="@+id/menu_about"
         android:orderInCategory="104"
         android:showAsAction="never"
-        android:title="@string/menu_about"/>
+        android:title="@string/menu_about"
+        tools:ignore="AppCompatResource" />
    <item
         android:id="@+id/menu_qrcode"
         android:orderInCategory="104"
         android:showAsAction="never"
-        android:title="@string/menu_qrcode"/>
+        android:title="@string/menu_qrcode"
+       tools:ignore="AppCompatResource" />
 
 </menu>

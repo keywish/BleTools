@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="app_name">BLE test tool</string>
+	<string name="title_activity_device_connect">DeviceConnect</string>
+	<string name="title_activity_characterisitic">CharacterisiticActivity</string>
+	<string name="title_activity_about">AboutActivity</string>
+	<string name="title_activity_change_char">ChangeCharActivity</string>
+	<string name="hello_world">Hello world!</string>
+	<string name="action_settings">Settings</string>
+	<string name="app_title">Device List</string>
+	<string name="menu_scan">scanning</string>
+	<string name="menu_stop">stop</string>
+	<string name="menu_services">Refresh service</string>
+	<string name="menu_autoconnect">auto connect</string>
+	<string name="RSSI">RSSI</string>
+	<string name="menu_about">about</string>
+	<string name="menu_qrcode">QR code scan download APP</string>
+	<string name="abount_hint">The code is open source on github, welcome to fork and star and pull request</string>
+	<string name="help_hint">The result of the notification is saved in the SD root directory txt</string>
+	<string name="about_question">If in doubt, or if you have good suggestions, please contact:</string>
+	<string name="description_list">Description list:</string>
+	<string name="characteristic_value">Eigenvalues:</string>
+	<string name="character_string">String</string>
+	<string name="hexadecimal">Hex</string>
+	<string name="write_value">Write value</string>
+	<string name="delivery_on_time">Timed transmission</string>
+	<string name="delivery_time">Send time / ms</string>
+	<string name="count">Total:</string>
+	<string name="edit_hint_one">Edit the value of button 1</string>
+	<string name="edit_hint_two">Edit the value of button 2</string>
+	<string name="edit_hint_three">Edit the value of button 3</string>
+	<string name="address">address:</string>
+	<string name="rssi">Rssi:</string>
+	<string name="broadcast_packet">Broadcast package</string>
+	<string name="broadcast_racket_name">The name in the broadcast package</string>
+	<string name="count_hint">Total: 0</string>
+	<string name="server_list">Service list</string>
+	<string name="disconnection_equipment">Device disconnected</string>
+	<string name="characteristic_list">Feature list</string>
+	<string name="successful_connection_equipment">Device connection succeeded</string>
+	<string name="feature_operation">Feature operation</string>
+	<string name="individual"> </string>
+	<string name="read">Read</string>
+	<string name="write">write</string>
+	<string name="start_notice">Start notification</string>
+	<string name="result_count">Number of bytes:</string>
+	<string name="clear_result">Empty</string>
+	<string name="save">save</string>
+	<string name="read_time">Reading time</string>
+	<string name="et_notify_resualt">The value of the notification is shown here</string>
+	<string name="stop_notice">Stop notification</string>
+	<string name="stop_sending">Stop sending</string>
+	<string name="empty_hint">Nothing to save!</string>
+	<string name="save_hint">The .txt file is successfully saved to the SD card root directory.</string>
+	<string name="cancel_automatic_connection">Cancel automatic connection</string>
+	<string name="set_connect_disconnection">Has been set to disconnect automatically after disconnection</string>
+
+</resources>

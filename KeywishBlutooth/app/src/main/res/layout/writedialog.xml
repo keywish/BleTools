@@ -15,20 +15,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="字符串" />
+            android:text="@string/character_string" />
 
         <RadioButton
             android:id="@+id/rb_write_hex"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="十六进制" />
+            android:text="@string/hexadecimal" />
     </RadioGroup>
 
     <EditText
         android:id="@+id/char_value"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="写入值" />
+        android:hint="@string/write_value" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,14 +39,14 @@
             android:id="@+id/btn_timing_write"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="定时发送" />
+            android:text="@string/delivery_on_time" />
 
         <EditText
             android:id="@+id/ed_writetime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:digits="0123456789"
-            android:hint="发送时间/ms"
+            android:hint="@string/delivery_time"
             android:inputType="number"
             android:text="100" />
 
@@ -60,7 +60,7 @@
             android:id="@+id/tv_timing_write_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="共:0"
+            android:text="@string/count_hint"
             android:textSize="14dp" />
     </LinearLayout>
 
@@ -99,19 +99,19 @@
             android:id="@+id/ed_edit_btn1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="编辑按键1的值" />
+            android:hint="@string/edit_hint_one" />
 
         <EditText
             android:id="@+id/ed_edit_btn2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="编辑按键2的值" />
+            android:hint="@string/edit_hint_two" />
 
         <EditText
             android:id="@+id/ed_edit_btn3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="编辑按键3的值" />
+            android:hint="@string/edit_hint_three" />
     </LinearLayout>
 
 </LinearLayout>

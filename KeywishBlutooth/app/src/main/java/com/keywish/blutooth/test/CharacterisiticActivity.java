@@ -87,7 +87,7 @@ public class CharacterisiticActivity extends AppCompatActivity {
                 CharacterisiticActivity.this.invalidateOptionsMenu();
             }
             if (BleService.ACTION_GATT_DISCONNECTED.equals(action)) {
-                Toast.makeText(CharacterisiticActivity.this, "设备连接断开",
+                Toast.makeText(CharacterisiticActivity.this, getText(R.string.disconnection_equipment),
                         Toast.LENGTH_SHORT).show();
                 bleService.connect(DeviceConnect.bleAddress);
             }
@@ -109,7 +109,7 @@ public class CharacterisiticActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chars);
-        getSupportActionBar().setTitle("特性列表");
+        getSupportActionBar().setTitle(getResources().getString(R.string.characteristic_list));
         uuid = (UUID) getIntent().getExtras().get("serviceUUID");
         init();
         bindService(new Intent(this, BleService.class), conn, BIND_AUTO_CREATE);

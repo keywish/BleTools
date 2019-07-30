@@ -86,6 +86,7 @@ public class BleService extends Service {
                 public void onConnectionStateChange(BluetoothGatt gatt, int status,
                                                     int newState) {
                     String intentAction;
+                    Log.i("SSS__",newState+"");
                     if (newState == BluetoothProfile.STATE_CONNECTED) {
                         intentAction = ACTION_GATT_CONNECTED;
                         mConnectionState = STATE_CONNECTED;

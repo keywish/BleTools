@@ -86,13 +86,13 @@ public class DeviceConnect extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(DeviceConnect.this, "设备连接成功！",
+                        Toast.makeText(DeviceConnect.this, getText(R.string.successful_connection_equipment),
                                 Toast.LENGTH_LONG).show();
                     }
                 });
             }
             if (BleService.ACTION_GATT_DISCONNECTED.equals(action)) {
-                Toast.makeText(DeviceConnect.this, "设备断开！", Toast.LENGTH_LONG)
+                Toast.makeText(DeviceConnect.this, getText(R.string.disconnection_equipment), Toast.LENGTH_LONG)
                         .show();
                 if (sharedPreferences.getBoolean("AutoConnect", true)) {
                     bleService.connect(bleAddress);
@@ -118,7 +118,6 @@ public class DeviceConnect extends AppCompatActivity {
                         servicesListAdapter.addServiceNames(serviceNames);
                         servicesListAdapter.addService(gattServices);
                         servicesListAdapter.notifyDataSetChanged();
-
                     }
                 });
 
@@ -134,7 +133,7 @@ public class DeviceConnect extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().setTitle("服务列表");
+        getSupportActionBar().setTitle(getResources().getString(R.string.server_list));
         sharedPreferences = getPreferences(0);
         editor = sharedPreferences.edit();
         init();

@@ -146,9 +146,9 @@ public class ChangeCharActivity extends AppCompatActivity implements OnClickList
                     @Override
                     public void run() {
                         // TODO Auto-generated methdo stub
-                        charString.setText("字符串: " + stringValue);
-                        charHex.setText("十六进制: " + hexValue);
-                        time.setText("读取时间: " + readTime);
+                        charString.setText(getText(R.string.character_string) +":"+ stringValue);
+                        charHex.setText(getText(R.string.hexadecimal) +":"+ hexValue);
+                        time.setText(getText(R.string.read_time) +":"+ readTime);
                         descriptor1.setText(des1String);
                         descriptor2.setText(des2String);
                     }
@@ -181,12 +181,12 @@ public class ChangeCharActivity extends AppCompatActivity implements OnClickList
                     public void run() {
                         // TODO Auto-generated method stub
                         notify_resualt.setText(text_string);
-                        resultcount.setText("字节数： " + resultLength);
+                        resultcount.setText(getText(R.string.result_count) + resultLength);
                     }
                 });
             }
             if (BleService.ACTION_GATT_DISCONNECTED.equals(action)) {
-                Toast.makeText(ChangeCharActivity.this, "设备连接断开",
+                Toast.makeText(ChangeCharActivity.this, getText(R.string.disconnection_equipment),
                         Toast.LENGTH_SHORT).show();
                 if (sharedPreferences.getBoolean("AutoConnect", true)) {
                     bleService.connect(DeviceConnect.bleAddress);
@@ -213,7 +213,7 @@ public class ChangeCharActivity extends AppCompatActivity implements OnClickList
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_char);
-        getSupportActionBar().setTitle("特征操作");
+        getSupportActionBar().setTitle(getResources().getString(R.string.feature_operation));
         sharedPreferences = this
                 .getSharedPreferences("writedata", MODE_PRIVATE);
         editor = sharedPreferences.edit();
@@ -300,7 +300,7 @@ public class ChangeCharActivity extends AppCompatActivity implements OnClickList
                 text_hex = null;
                 notify_resualt.setText("");
                 resultLengthNum = 0;
-                resultcount.setText("字节数:0");
+                resultcount.setText(getResources().getString(R.string.result_count)+"0");
             }
         });
         save_result.setOnClickListener(new OnClickListener() {
@@ -316,7 +316,7 @@ public class ChangeCharActivity extends AppCompatActivity implements OnClickList
     private void saveResualt(String result) {
         // TODO Auto-generated method stub
         if (result.isEmpty()) {
-            Toast.makeText(this, "没有可保存的内容！", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getText(R.string.empty_hint), Toast.LENGTH_SHORT).show();
         } else {
             try {
                 File file = new File(Environment.getExternalStorageDirectory(),
@@ -335,7 +335,7 @@ public class ChangeCharActivity extends AppCompatActivity implements OnClickList
                 Toast.makeText(
                         ChangeCharActivity.this,
                         "BLElog" + System.currentTimeMillis()
-                                + ".txt文件成功保存到SD卡根目录下", Toast.LENGTH_SHORT)
+                                + R.string.save_hint, Toast.LENGTH_SHORT)
                         .show();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -576,10 +576,10 @@ public class ChangeCharActivity extends AppCompatActivity implements OnClickList
                 // TODO Auto-generated method stub
                 period = Integer.parseInt(write_time.getText().toString());
                 if (writing) {
-                    timing_write.setText("定时发送");
+                    timing_write.setText(getText(R.string.delivery_on_time));
                     writing = false;
                 } else {
-                    timing_write.setText("停止发送");
+                    timing_write.setText(getText(R.string.stop_sending));
                     write_byte_number = 0;
                     writing = true;
                 }
@@ -608,7 +608,7 @@ public class ChangeCharActivity extends AppCompatActivity implements OnClickList
                                         @Override
                                         public void run() {
                                             // TODO Auto-generated method stub
-                                            timing_write_count.setText("共:"
+                                            timing_write_count.setText(getApplicationContext().getResources().getString(R.string.count)
                                                     + write_byte_number);
                                         }
                                     });
@@ -672,12 +672,12 @@ public class ChangeCharActivity extends AppCompatActivity implements OnClickList
                     bleService.mBluetoothGatt.setCharacteristicNotification(
                             gattChar, true);
                     startNotify = true;
-                    notifyButton.setText("停止通知");
+                    notifyButton.setText(getText(R.string.stop_notice));
                 } else {
                     bleService.mBluetoothGatt.setCharacteristicNotification(
                             gattChar, false);
                     startNotify = false;
-                    notifyButton.setText("开始通知");
+                    notifyButton.setText(getText(R.string.start_notice));
                 }
                 break;
         }

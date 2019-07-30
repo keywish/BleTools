@@ -97,13 +97,14 @@ public class BleDeviceListAdapter extends BaseAdapter {
             viewholder.devicename.setText(name);
         else
             viewholder.devicename.setText("Unknow Device");
-        viewholder.deviceAddress.setText("地址： "
+        viewholder.deviceAddress.setText(mInflater.getContext().getResources().getString(R.string.address)
                 + mLeDevices.get(position).getAddress());
-        viewholder.deviceRSSI.setText("信号： " + RSSIs.get(position).toString());
-        viewholder.devicerecord.setText("广播包： " + "\n"
-                + scanRecords.get(position));
-        viewholder.devicerecord_name.setText("广播包中的名称:"
-                + Utils.ParseScanRecord(scanRecords.get(position)));
+        viewholder.deviceRSSI.setText(mInflater.getContext().getResources().getString(R.string.rssi) + RSSIs.get(position).toString());
+        viewholder.devicerecord.setText(mInflater.getContext().getResources().getString(R.string.broadcast_packet) + "\n"
+                +":"+ scanRecords.get(position));
+        viewholder.devicerecord_name.setText(
+                mInflater.getContext().getResources().getString(R.string.broadcast_racket_name)
+                + ":"+Utils.ParseScanRecord(scanRecords.get(position)));
         return view;
     }
 
@@ -122,5 +123,4 @@ public class BleDeviceListAdapter extends BaseAdapter {
         scanRecords.clear();
         this.notifyDataSetChanged();
     }
-
 }
