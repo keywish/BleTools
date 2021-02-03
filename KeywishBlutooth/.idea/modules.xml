@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/KeywishBlutooth.iml" filepath="$PROJECT_DIR$/KeywishBlutooth.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/KeywishBlutooth.iml" filepath="$PROJECT_DIR$/.idea/KeywishBlutooth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/KeywishBlutooth.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/KeywishBlutooth.app.iml" />
     </modules>
   </component>
 </project>
