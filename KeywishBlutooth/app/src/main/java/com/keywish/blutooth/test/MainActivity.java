@@ -58,7 +58,9 @@ public class MainActivity extends AppCompatActivity {
     Editor editor;
 
     private static String[] PERMISSIONS_STORAGE = {
-            "android.permission.ACCESS_COARSE_LOCATION"};
+            "android.permission.ACCESS_COARSE_LOCATION",
+            "android.permission.ACCESS_FINE_LOCATION",
+            "android.permission.ACCESS_BACKGROUND_LOCATION"};
 
     //  @SuppressLint("NewApi")
     @Override
@@ -89,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
         }
         IntentFilter statusFilter = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
         registerReceiver(mStatusReceive, statusFilter);
-
     }
 
     private BroadcastReceiver mStatusReceive = new BroadcastReceiver() {
@@ -118,8 +119,12 @@ public class MainActivity extends AppCompatActivity {
     private void checkPermission() {
         if (Build.VERSION.SDK_INT >= 23) {
             //判断是否有权限
-            if (ContextCompat.checkSelfPermission(this,
-                    Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if ((ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) ||
+                    (ContextCompat.checkSelfPermission(this,
+                            Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) ||
+                    (ContextCompat.checkSelfPermission(this,
+                            Manifest.permission.ACCESS_BACKGROUND_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
                 //请求权限
                 ActivityCompat.requestPermissions(this, PERMISSIONS_STORAGE,
                         1);
