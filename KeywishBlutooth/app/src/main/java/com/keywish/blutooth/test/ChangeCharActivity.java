@@ -30,6 +30,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -360,6 +361,7 @@ public class ChangeCharActivity extends AppCompatActivity implements OnClickList
                 .findViewById(R.id.rg_write_format);
         final EditText editText = (EditText) dialogview
                 .findViewById(R.id.char_value);
+        final CheckBox textAddNewLineCheckbox = dialogview.findViewById(R.id.text_add_newline);
         final Button timing_write = (Button) dialogview
                 .findViewById(R.id.btn_timing_write);
         write_time = (EditText) dialogview.findViewById(R.id.ed_writetime);
@@ -590,6 +592,10 @@ public class ChangeCharActivity extends AppCompatActivity implements OnClickList
                             while (writing) {
                                 String charvalue = editText.getText()
                                         .toString();
+                                if (textAddNewLineCheckbox.isChecked()) {
+                                    charvalue += '\r';
+                                    charvalue += '\n';
+                                }
                                 if (!charvalue.isEmpty()) {
                                     if (isHex) {
                                         write_byte_number += charvalue.length()
@@ -628,6 +634,10 @@ public class ChangeCharActivity extends AppCompatActivity implements OnClickList
             public void onClick(DialogInterface arg0, int arg1) {
                 // TODO Auto-generated method stub
                 String charvalue = editText.getText().toString();
+                if (textAddNewLineCheckbox.isChecked()) {
+                    charvalue += '\r';
+                    charvalue += '\n';
+                }
                 if (!charvalue.isEmpty()) {
                     if (isHex) {
                         byte[] str = str2Byte(charvalue);

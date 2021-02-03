@@ -54,5 +54,6 @@
     <string name="cancel_automatic_connection">取消自动连接</string>
     <string name="set_connect_disconnection">已设置为断开后自动连接</string>
     <string name="isExit_hint">再按一次退出</string>
+    <string name="text_add_newline">增加新行</string>
 
 </resources>

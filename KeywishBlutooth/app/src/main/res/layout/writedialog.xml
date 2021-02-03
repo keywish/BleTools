@@ -113,5 +113,11 @@
             android:layout_height="wrap_content"
             android:hint="@string/edit_hint_three" />
     </LinearLayout>
+    <CheckBox
+        android:id="@+id/text_add_newline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_add_newline">
+    </CheckBox>
 
 </LinearLayout>

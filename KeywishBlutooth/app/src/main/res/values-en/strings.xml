@@ -55,5 +55,6 @@
 	<string name="save_hint">The .txt file is successfully saved to the SD card root directory.</string>
 	<string name="cancel_automatic_connection">Cancel automatic connection</string>
 	<string name="set_connect_disconnection">Has been set to disconnect automatically after disconnection</string>
+    <string name="text_add_newline">Add new line</string>
 
 </resources>

@@ -55,5 +55,6 @@
 	<string name="save_hint">.txt文件成功保存到SD卡根目录下</string>
 	<string name="cancel_automatic_connection">取消自动连接</string>
 	<string name="set_connect_disconnection">已设置为断开后自动连接</string>
+    <string name="text_add_newline">增加新行</string>
 
 </resources>
